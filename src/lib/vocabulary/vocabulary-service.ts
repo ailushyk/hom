@@ -12,8 +12,16 @@ export const vocabularyService = () => {
       const { data } = await api(
         `${API_URL}/api/vocabulary/${userId}/${wordId}`,
       )
-      console.log('getWordById: ', data)
       return data
+    },
+    async addWord(param: { language: string; text: string }, userId: string) {
+      return await api(`${API_URL}/api/vocabulary/${userId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(param),
+      })
     },
   }
 }
