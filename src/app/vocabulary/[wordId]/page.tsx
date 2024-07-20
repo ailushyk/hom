@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
-import { getAuthenticatedUser } from '@/lib/auth/auth-service'
+import { getAuthenticatedUser } from '@/lib/auth/user-service'
 import { vocabularyService } from '@/lib/vocabulary/vocabulary-service'
 import { notFound } from 'next/navigation'
 

@@ -4,7 +4,7 @@
 
   @layer base {
     :root {
-      --background: 0 0% 100%;
+      --background: 0, 0%, 100%;
       --foreground: 222.2 84% 4.9%;
 
       --card: 0 0% 100%;
@@ -36,7 +36,7 @@
     }
 
     .dark {
-      --background: 222.2 84% 4.9%;
+      --background: 222.2, 84%, 4.9%;
       --foreground: 210 40% 98%;
 
       --card: 222.2 84% 4.9%;
@@ -70,6 +70,9 @@
     * {
       @apply border-border;
     }
+    html, body {
+      @apply min-h-svh;
+    }
     body {
       @apply bg-background text-foreground;
     }
@@ -78,4 +81,9 @@
 
 input {
   color-scheme: dark;
+}
+
+.actions_blur-mask {
+  @apply fixed inset-0 top-auto h-24 z-10 bg-background pointer-events-none;
+  mask: linear-gradient(transparent, hsla(var(--background), 0.78), hsl(var(--background)));
 }
