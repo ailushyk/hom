@@ -1,6 +1,6 @@
 'use server'
 
-import { getAuthenticatedUser } from '@/lib/auth/auth-service'
+import { getAuthenticatedUser } from '@/lib/auth/user-service'
 import { vocabularyService } from '@/lib/vocabulary/vocabulary-service'
 import { revalidatePath } from 'next/cache'
 

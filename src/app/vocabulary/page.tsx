@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { WordListItem } from '@/components/word-list-item'
-import { getAuthenticatedUser } from '@/lib/auth/auth-service'
+import { getAuthenticatedUser } from '@/lib/auth/user-service'
 import { vocabularyService } from '@/lib/vocabulary/vocabulary-service'
 
 export default async function VocabularyPage() {
