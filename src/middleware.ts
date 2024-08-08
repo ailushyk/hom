@@ -1,6 +1,5 @@
-import { publicRoutes } from '@/config/router-config'
+import { AUTH_DEFAULT_REDIRECT_URL, publicRoutes } from '@/config/router-config'
 import { auth } from '@/lib/auth'
-import { UnauthorizedError } from '@/lib/errors/unauthorized-error'
 
 export default auth((req) => {
   const { nextUrl } = req
@@ -9,8 +8,8 @@ export default auth((req) => {
   const isPublicRoutes = publicRoutes.includes(nextUrl.pathname)
 
   if (!isLoggedIn && !isPublicRoutes) {
-    // return Response.redirect(new URL(AUTH_DEFAULT_REDIRECT_URL, nextUrl))
-    throw new UnauthorizedError()
+    // console.log(new UnauthorizedError())
+    return Response.redirect(new URL(AUTH_DEFAULT_REDIRECT_URL, nextUrl))
   }
 
   return
