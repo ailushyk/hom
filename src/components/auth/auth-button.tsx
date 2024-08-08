@@ -24,7 +24,7 @@ export async function AuthButton() {
       <DropdownMenu>
         <DropdownMenuTrigger>
           <Avatar>
-            <AvatarImage src={`https://github.com/${user?.email}.png`} />
+            <AvatarImage src={user.image} />
             <AvatarFallback>
               {getInitials((user.name || user.email)!)}
             </AvatarFallback>

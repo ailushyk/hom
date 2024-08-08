@@ -8,6 +8,7 @@ declare module 'next-auth' {
       id: string
       email: string
       name: string
+      image: string
     }
   }
 }
@@ -16,7 +17,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Keycloak],
   callbacks: {
     async jwt({ token, account, ...args }) {
-      console.log('jwt', { token, account, args })
       if (account) {
         token.idToken = account.id_token
       }
