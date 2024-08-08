@@ -1,3 +1,4 @@
+import { AppHeader } from '@/components/layout/app-header'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -17,7 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn('dark', inter.className)}>{children}</body>
+      <body className={cn('dark', inter.className)}>
+        <AppHeader />
+        {children}
+      </body>
     </html>
   )
 }

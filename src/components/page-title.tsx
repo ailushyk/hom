@@ -8,8 +8,6 @@ export const PageTitle = ({
   className?: string
 }) => {
   return (
-    <h1 className={cn('border-b py-4 text-xl font-semibold', className)}>
-      {children}
-    </h1>
+    <h1 className={cn('py-4 text-xl font-semibold', className)}>{children}</h1>
   )
 }

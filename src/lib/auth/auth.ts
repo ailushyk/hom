@@ -1,14 +1,39 @@
+import { env } from '@/env'
 import NextAuth from 'next-auth'
 import Keycloak from 'next-auth/providers/keycloak'
+
+declare module 'next-auth' {
+  interface Session {
+    user: {
+      id: string
+      email: string
+      name: string
+    }
+  }
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Keycloak],
   callbacks: {
-    // authorized: async ({ auth }) => {
-    //   console.log('authorized', auth)
-    //   return true
-    //   // Logged in users are authenticated, otherwise redirect to login page
-    //   // return !!auth
-    // },
+    async jwt({ token, account, ...args }) {
+      console.log('jwt', { token, account, args })
+      if (account) {
+        token.idToken = account.id_token
+      }
+      return token
+    },
+  },
+  events: {
+    async signOut(message) {
+      if ('token' in message) {
+        const token = { message }
+        const idToken = (token.message.token?.idToken as string) || ''
+        const logOutUrl = new URL(
+          `${env.AUTH_KEYCLOAK_ISSUER}/protocol/openid-connect/logout`,
+        )
+        logOutUrl.searchParams.set('id_token_hint', idToken)
+        await fetch(logOutUrl)
+      }
+    },
   },
 })
